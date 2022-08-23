@@ -1,12 +1,12 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022/Arch Linux) (preloaded format=pdflatex 2022.5.15)  23 AUG 2022 14:09
+This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022/Arch Linux) (preloaded format=pdflatex 2022.5.15)  23 AUG 2022 17:32
 entering extended mode
  restricted \write18 enabled.
- file:line:error style messages enabled.
  %&-line parsing enabled.
-**/home/matias/Dropbox/Backups/Articulos/python_latex/articulo/main.tex
-(/home/matias/Dropbox/Backups/Articulos/python_latex/articulo/main.tex
+**main.tex
+(./main.tex
 LaTeX2e <2021-11-15> patch level 1
-L3 programming layer <2022-04-10> (/usr/share/texmf-dist/tex/latex/base/article.cls
+L3 programming layer <2022-04-10>
+(/usr/share/texmf-dist/tex/latex/base/article.cls
 Document Class: article 2021/10/04 v1.4n Standard LaTeX document class
 (/usr/share/texmf-dist/tex/latex/base/size10.clo
 File: size10.clo 2021/10/04 v1.4n Standard LaTeX file (size option)
@@ -22,43 +22,55 @@ File: size10.clo 2021/10/04 v1.4n Standard LaTeX file (size option)
 \abovecaptionskip=\skip47
 \belowcaptionskip=\skip48
 \bibindent=\dimen138
-) (/usr/share/texmf-dist/tex/latex/base/inputenc.sty
+)
+(/usr/share/texmf-dist/tex/latex/base/inputenc.sty
 Package: inputenc 2021/02/14 v1.3d Input encoding file
 \inpenc@prehook=\toks16
 \inpenc@posthook=\toks17
-) (/usr/share/texmf-dist/tex/latex/graphics/graphicx.sty
+)
+(/usr/share/texmf-dist/tex/latex/graphics/graphicx.sty
 Package: graphicx 2021/09/16 v1.2d Enhanced LaTeX Graphics (DPC,SPQR)
- (/usr/share/texmf-dist/tex/latex/graphics/keyval.sty
+
+(/usr/share/texmf-dist/tex/latex/graphics/keyval.sty
 Package: keyval 2014/10/28 v1.15 key=value parser (DPC)
 \KV@toks@=\toks18
-) (/usr/share/texmf-dist/tex/latex/graphics/graphics.sty
+)
+(/usr/share/texmf-dist/tex/latex/graphics/graphics.sty
 Package: graphics 2021/03/04 v1.4d Standard LaTeX Graphics (DPC,SPQR)
- (/usr/share/texmf-dist/tex/latex/graphics/trig.sty
+
+(/usr/share/texmf-dist/tex/latex/graphics/trig.sty
 Package: trig 2021/08/11 v1.11 sin cos tan (DPC)
-) (/usr/share/texmf-dist/tex/latex/graphics-cfg/graphics.cfg
+)
+(/usr/share/texmf-dist/tex/latex/graphics-cfg/graphics.cfg
 File: graphics.cfg 2016/06/04 v1.11 sample graphics configuration
 )
 Package graphics Info: Driver file: pdftex.def on input line 107.
- (/usr/share/texmf-dist/tex/latex/graphics-def/pdftex.def
+
+(/usr/share/texmf-dist/tex/latex/graphics-def/pdftex.def
 File: pdftex.def 2020/10/05 v1.2a Graphics/color driver for pdftex
 ))
 \Gin@req@height=\dimen139
 \Gin@req@width=\dimen140
-) (/usr/share/texmf-dist/tex/latex/graphics/color.sty
+)
+(/usr/share/texmf-dist/tex/latex/graphics/color.sty
 Package: color 2021/12/07 v1.3c Standard LaTeX Color (DPC)
- (/usr/share/texmf-dist/tex/latex/graphics-cfg/color.cfg
+
+(/usr/share/texmf-dist/tex/latex/graphics-cfg/color.cfg
 File: color.cfg 2016/01/02 v1.6 sample color configuration
 )
 Package color Info: Driver file: pdftex.def on input line 149.
-) (/usr/share/texmf-dist/tex/generic/babel/babel.sty
+)
+(/usr/share/texmf-dist/tex/generic/babel/babel.sty
 Package: babel 2022/02/26 3.73 The Babel package
 \babel@savecnt=\count193
 \U@D=\dimen141
 \l@unhyphenated=\language87
- (/usr/share/texmf-dist/tex/generic/babel/txtbabel.def)
+
+(/usr/share/texmf-dist/tex/generic/babel/txtbabel.def)
 \bbl@readstream=\read2
 \bbl@dirlevel=\count194
- (/usr/share/texmf-dist/tex/generic/babel-spanish/spanish.ldf
+
+(/usr/share/texmf-dist/tex/generic/babel-spanish/spanish.ldf
 Language: spanish.ldf 2021/05/27 v5.0q Spanish support from the babel system
 \es@quottoks=\toks19
 \es@quotdepth=\count195
@@ -66,9 +78,13 @@ Package babel Info: Making " an active character on input line 570.
 Package babel Info: Making . an active character on input line 675.
 Package babel Info: Making < an active character on input line 722.
 Package babel Info: Making > an active character on input line 722.
-)) (/usr/share/texmf-dist/tex/latex/lipsum/lipsum.sty (/usr/share/texmf-dist/tex/latex/l3packages/l3keys2e/l3keys2e.sty (/usr/share/texmf-dist/tex/latex/l3kernel/expl3.sty
+))
+(/usr/share/texmf-dist/tex/latex/lipsum/lipsum.sty
+(/usr/share/texmf-dist/tex/latex/l3packages/l3keys2e/l3keys2e.sty
+(/usr/share/texmf-dist/tex/latex/l3kernel/expl3.sty
 Package: expl3 2022-04-10 L3 programming layer (loader) 
- (/usr/share/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def
+
+(/usr/share/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def
 File: l3backend-pdftex.def 2022-04-14 L3 backend support: PDF output (pdfTeX)
 \l__color_backend_stack_int=\count196
 \l__pdf_internal_box=\box50
@@ -79,13 +95,16 @@ Package: lipsum 2021-09-20 v2.7 150 paragraphs of Lorem Ipsum dummy text
 \g__lipsum_par_int=\count197
 \l__lipsum_a_int=\count198
 \l__lipsum_b_int=\count199
- (/usr/share/texmf-dist/tex/latex/lipsum/lipsum.ltd.tex)) (/usr/share/texmf-dist/tex/latex/multirow/multirow.sty
+
+(/usr/share/texmf-dist/tex/latex/lipsum/lipsum.ltd.tex))
+(/usr/share/texmf-dist/tex/latex/multirow/multirow.sty
 Package: multirow 2021/03/15 v2.8 Span multiple rows of a table
 \multirow@colwidth=\skip49
 \multirow@cntb=\count266
 \multirow@dima=\skip50
 \bigstrutjot=\dimen142
-) (/usr/share/texmf-dist/tex/latex/tools/multicol.sty
+)
+(/usr/share/texmf-dist/tex/latex/tools/multicol.sty
 Package: multicol 2021/10/28 v1.9b multicolumn formatting (FMi)
 \c@tracingmulticols=\count267
 \mult@box=\box51
@@ -173,7 +192,8 @@ LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 15.
 LaTeX Font Info:    ... okay on input line 15.
 LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 15.
 LaTeX Font Info:    ... okay on input line 15.
- (/usr/share/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
+
+(/usr/share/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
 \scratchcounter=\count277
 \scratchdimen=\dimen152
@@ -188,9 +208,12 @@ LaTeX Font Info:    ... okay on input line 15.
 \everyMPtoPDFconversion=\toks21
 ) (/usr/share/texmf-dist/tex/latex/epstopdf-pkg/epstopdf-base.sty
 Package: epstopdf-base 2020-01-24 v2.11 Base part for package epstopdf
-Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 485.
- (/usr/share/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg
-File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Live
+Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 4
+85.
+
+(/usr/share/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg
+File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Liv
+e
 ))
 LaTeX Info: Redefining \. on input line 15.
 LaTeX Info: Redefining \% on input line 15.
@@ -220,19 +243,27 @@ Package pdftex.def Info: edades.png  used on input line 38.
  [2 <./correlacion.png>] (./bmi.tex
 LaTeX Font Info:    External font `cmex10' loaded for size
 (Font)              <7> on input line 5.
-) (./costos.tex) [3 <./edades.png>] [4] (./main.aux
+)
+(./costos.tex) [3 <./edades.png>] [4] (./main.aux
 LaTeX Info: Redefining \. on input line 8.
 LaTeX Info: Redefining \% on input line 8.
 ) ) 
 Here is how much of TeX's memory you used:
- 3415 strings out of 478238
- 59494 string characters out of 5850456
+ 3414 strings out of 478238
+ 59313 string characters out of 5850456
  466488 words of memory out of 5000000
  21634 multiletter control sequences out of 15000+600000
  474288 words of font info for 45 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 72i,11n,77p,298b,363s stack positions out of 5000i,500n,10000p,200000b,80000s
-</usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx9.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr9.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt12.pfb>
+ 72i,11n,77p,237b,363s stack positions out of 5000i,500n,10000p,200000b,80000s
+</usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/share
+/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx9.pfb></usr/share/texmf-dist/fon
+ts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texmf-dist/fonts/type1/public
+/amsfonts/cm/cmr12.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cm
+r17.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/sh
+are/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/share/texmf-dist/f
+onts/type1/public/amsfonts/cm/cmr9.pfb></usr/share/texmf-dist/fonts/type1/publi
+c/amsfonts/cm/cmtt12.pfb>
 Output written on main.pdf (4 pages, 156323 bytes).
 PDF statistics:
  67 PDF objects out of 1000 (max. 8388607)

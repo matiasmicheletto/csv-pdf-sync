@@ -14,7 +14,7 @@ Si bien en otro [artículo anterior](https://www.linkedin.com/pulse/programaci%2
 
 Este ejemplo está implementado con software libre y gratuito, por lo que no debería haber limitaciones para replicar el procedimiento en el corto y mediano plazo. Se puede consultar todo el código utilizado durante este tutorial en [este repositorio](https://github.com/matiasmicheletto/csv-pdf-sync) público.
 
-[Overleaf](overleaf.com) es una buena herramienta colaborativa para redactar contenido técnico extenso, sin embargo, el documento generado en este ejemplo se compilará con el programa pdflatex que viene en el paquete [texlive-full](https://www.tug.org/texlive/). Opcionalmente, se puede usar [Git](https://git-scm.com/) para tener un seguimiento de los cambios en el directorio del proyecto, entre otras ventajas que se detallan más adelante como un [apéndice](#Apéndice:-organización-del-directorio-de-trabajo) de este mismo tutorial. 
+[Overleaf](https://www.overleaf.com/) es una buena herramienta colaborativa para redactar contenido técnico extenso, sin embargo, el documento generado en este ejemplo se compilará con el programa pdflatex que viene en el paquete [texlive-full](https://www.tug.org/texlive/). Opcionalmente, se puede usar [Git](https://git-scm.com/) para tener un seguimiento de los cambios en el directorio del proyecto, entre otras ventajas que se detallan más adelante como un [apéndice](#automatizaci%C3%B3n-de-todo-el-proceso) de este mismo tutorial. 
 
 Finalmente, para ilustrar la tarea de ejecutar los distintos programas en orden y copiar o mover archivos resultantes dentro del directorio, se presentan los pasos en forma de instrucciones para línea de comandos, pero que se pueden realizar por medio de scripts para cualquier shell, dependiendo del sistema operativo con el que se trabaje, o incluso con otros programas que cuentan con interfaz gráfica.  
 
@@ -22,11 +22,11 @@ Finalmente, para ilustrar la tarea de ejecutar los distintos programas en orden 
 
 ## Procesamiento de los datos
 
-Con la intención de mostrar un ejemplo sencillo, se trabajará sobre el procesamiento de los datos extraídos de un archivo ".csv" que se encuentra públicamente disponible en [este enlace](https://www.kaggle.com/datasets/mirichoi0218/insurance). La tabla de datos describe siete atributos observados de 1338 personas diferentes, de manera que se puede obtener, para cada una de ellas, la edad, el sexo, el índice de masa corporal (BMI), la cantidad de hijos, su condición de fumador, la región de residencia y los costos de seguro médico.
+Con la intención de mostrar un ejemplo sencillo, se trabajará sobre el procesamiento de los datos extraídos de un archivo ".csv" que se encuentra disponible en [este sitio](https://www.kaggle.com/datasets/mirichoi0218/insurance). La tabla de datos describe siete atributos observados de 1338 personas diferentes, de manera que se puede obtener, para cada una de ellas, la edad, el sexo, el índice de masa corporal (BMI), la cantidad de hijos, su condición de fumador, la región de residencia y los costos de seguro médico.
 
 ![Encabezado](doc/Encabezado.png)
 
-El análisis comienza cargando en memoria el contenido de este archivo, para lo cual se emplea la librería [Pandas](https://pandas.pydata.org/).
+Para procesar los datos de este ejemplo, se comienza cargando en memoria el contenido del archivo datos, para lo cual se emplea la librería [Pandas](https://pandas.pydata.org/).
 
 ```python
 import pandas as pd  
@@ -83,7 +83,7 @@ mpl.rcParams['font.family'] = 'STIXGeneral'
 mpl.rcParams['font.size'] = 12  
 ```
 
-A continuación, es posible avanzar con la generación de un par de gráficos para simular cierto análisis exploratorio. A modo de ejemplo, se emplea la librería [Seaborn](https://seaborn.pydata.org/) para generar una matriz de correlación entre las columnas. Aquí se puede apreciar la importancia de haber traducido los nombres de las variables del *dataset* y ajustado las fuentes y formatos del texto de la imagen.
+A continuación, es posible avanzar con la generación de un par de gráficos para simular cierto análisis exploratorio. A modo de ejemplo, se emplea la librería [Seaborn](https://seaborn.pydata.org/) para generar una matriz de correlación entre las columnas. Aquí se puede apreciar la importancia de haber traducido los nombres de las variables del *dataset* y ajustado las fuentes y formatos del texto de la imagen apropiadamente.
 
 ```python
 import seaborn as sns  
@@ -174,13 +174,13 @@ to_latex(chargesdata, "Promedios de costos por edad, sexo y fumador", "tab:costo
 
 El procedimiento para la redacción del documento LaTeX no se ve afectado para lograr la sincronización del archivo generado en formato ".pdf" con los resultados del análisis realizado en Python. En este ejemplo, se emplea una simple plantilla de artículo que se encuentra disponible en [este sitio](https://es.overleaf.com/latex/templates/a-simple-article-template/gdsdkccmjnxg).
 
-El contenido del artículo posee el mismo texto que este tutorial, y al igual que este documento, las figuras y los gráficos se insertan como referencias a un archivo local.
+El contenido del artículo se genera con el paquete [lipsum](https://www.ctan.org/pkg/lipsum) para crear texto de relleno ([Lorem Ipsum](https://www.lipsum.com/)). Las figuras y los gráficos se insertan como referencias a los archivos que contienen las imágenes.
 
 ```latex
 \begin{figure}[ht]  
     \centering  
-    \includegraphics[width=0.9\textwidth]{correlacion.png}  
-    \caption{Matriz de correlación entre variables}  
+    \includegraphics[width=\textwidth]{correlacion.png}  
+    \caption{Matriz de correlación}  
     \label{fig:correlacion}  
 \end{figure}  
 ```
@@ -201,7 +201,7 @@ pdflatex main.tex
 
 ## Automatización de todo el proceso
 
-La intención de automatizar la compilación del documento, es que la versión final del artículo se encuentre siempre sincronizada con los resultados obtenidos a partir del procesamiento de los datos crudos originales. Para esto se puede contar con un script bash que contenga las instrucciones que son necesarias ejecutar en caso de actualizar el archivo ```insurance.csv``` con los datos. Por cuestiones de compatibilidad en el manejo de librerías de Python, este ejemplo utiliza un entorno virtual. 
+La intención de automatizar la compilación del documento, es que la versión final del artículo se encuentre siempre sincronizada con los resultados obtenidos a partir del procesamiento de los datos crudos originales. Para esto se puede contar con un script bash que contenga las instrucciones que son necesarias ejecutar en caso de actualizar el archivo ```insurance.csv``` con los datos. Por cuestiones de compatibilidad en el manejo de librerías de Python, en este ejemplo se utiliza un entorno virtual, cuyas ventajas de uso se detallan en la siguiente sección. 
 
 ```bash
 cd datos # Moverse al directorio "datos"  
@@ -224,7 +224,11 @@ echo '64,male,99.99,20,no,northwest,99999' >> datos/insurance.csv
 ./sync.sh  
 ```
 
-Se puede comprobar que cambian los valores en la figura que contiene la matriz de correlación y lo mismo ocurre con las tablas. Finalmente y en caso de no haber aplicado control de versiones al proyecto, se puede revertir este último cambio con:
+Se puede comprobar que cambian los valores en la figura que contiene la matriz de correlación y lo mismo ocurre con las tablas, donde los datos correspondientes al último rango etario de no fumadores, difieren luego de la modificación de los datos originales.  
+
+![Diferencia](/doc/Diff3.png)
+
+Finalmente y en caso de no haber aplicado control de versiones al proyecto, se puede revertir este último cambio con:
 
 ```bash
 # Copiar todo menos las últimas dos líneas a un archivo temporal  

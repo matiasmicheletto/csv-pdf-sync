@@ -7,3 +7,4 @@ deactivate
 cp *.png *.tex ../articulo
 cd ../articulo
 pdflatex main.tex
+cp main.pdf ../articulo.pdf
