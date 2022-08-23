@@ -1,0 +1,54 @@
+\documentclass[a4paper]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage{graphicx, color}
+\usepackage[spanish]{babel}
+\usepackage{lipsum}
+\usepackage{multirow}
+\usepackage{multicol}
+
+
+\title{Lorem Ipsum Dolor Sit Amet}
+\author{Nomen Nescio$^1$}
+\date{$^1$Ignotus Academiae Scientiarum \\ \texttt{email@edu}}
+
+\begin{document}
+	\maketitle
+	
+	\begin{abstract}        
+        \lipsum[1]  \\
+		\noindent\textbf{Keywords:} \LaTeX, Python, Lorem, Ipsum
+	\end{abstract}
+
+    \section{Introducción}
+    \lipsum[2-3]
+
+    \section{Figuras}
+    \lipsum[4]
+
+    \begin{figure}[ht]
+        \centering
+        \includegraphics[width=\textwidth]{correlacion.png}
+        \caption{Matriz de correlación}
+        \label{fig:correlacion}
+    \end{figure}
+
+    \begin{figure}[ht]
+        \centering
+        \includegraphics[width=\textwidth]{edades.png}
+        \caption{Distribución de edades}
+        \label{fig:edades}
+    \end{figure}
+
+    \lipsum[5-6]
+
+    \section{Tablas}
+    \lipsum[7]
+    \input{bmi.tex}
+    \lipsum[8]
+    \input{costos.tex}
+
+    \section{Conclusión}
+    \lipsum[9]
+
+\end{document}
