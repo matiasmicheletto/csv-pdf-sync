@@ -14,7 +14,7 @@ Si bien en otro [artículo anterior](https://www.linkedin.com/pulse/programaci%2
 
 Este ejemplo está implementado con software libre y gratuito, por lo que no debería haber limitaciones para replicar el procedimiento en el corto y mediano plazo. Se puede consultar todo el código utilizado durante este tutorial en [este repositorio](https://github.com/matiasmicheletto/csv-pdf-sync) público.
 
-[Overleaf](https://www.overleaf.com/) es una buena herramienta colaborativa para redactar contenido técnico extenso, sin embargo, el documento generado en este ejemplo se compilará con el programa pdflatex que viene en el paquete [texlive-full](https://www.tug.org/texlive/). Opcionalmente, se puede usar [Git](https://git-scm.com/) para tener un seguimiento de los cambios en el directorio del proyecto, entre otras ventajas que se detallan más adelante como un [apéndice](#automatizaci%C3%B3n-de-todo-el-proceso) de este mismo tutorial. 
+Una buena herramienta colaborativa para redactar contenido técnico extenso es [Overleaf](https://www.overleaf.com/), sin embargo, el documento generado en este ejemplo se compilará con el programa pdflatex que viene en el paquete [texlive-full](https://www.tug.org/texlive/). Opcionalmente, se puede usar [Git](https://git-scm.com/) para tener un seguimiento de los cambios en el directorio del proyecto, entre otras ventajas que se detallan más adelante como un [apéndice](#ap%C3%A9ndice-organizaci%C3%B3n-del-directorio-de-trabajo) de este mismo tutorial. 
 
 Finalmente, para ilustrar la tarea de ejecutar los distintos programas en orden y copiar o mover archivos resultantes dentro del directorio, se presentan los pasos en forma de instrucciones para línea de comandos, pero que se pueden realizar por medio de scripts para cualquier shell, dependiendo del sistema operativo con el que se trabaje, o incluso con otros programas que cuentan con interfaz gráfica.  
 
@@ -43,7 +43,7 @@ print(data.describe(), end = '\n\n')
 Como los nombres de las columnas y los datos categóricos están en un idioma diferente al del artículo a redactar, es posible aplicar una traducción al contenido para evitar tener que editar las tablas y figuras posteriormente.
 
 ```python
-# Traducir columnas y datos categóricos
+# Traducir columnas
 data.rename(columns = {  
     'age': 'Edad',  
     'sex': 'Sexo',  
@@ -53,6 +53,7 @@ data.rename(columns = {
     'children': 'Hijos',  
     'charges': 'Costos'  
     }, inplace = True)  
+# Traducir datos categóricos
 data.replace({  
     'Sexo': {  
         'male': 'Masculino',  
@@ -91,7 +92,7 @@ import matplotlib.pyplot as plt
   
 ax = sns.heatmap(data.corr(), annot = True, cmap = 'YlGnBu', linewidths = .2)  
 plt.savefig('correlacion.png')  
-#plt.show() # Descomentar para mostrar la figura en una ventana  
+plt.show()
 ```
 
 ![Correlación](articulo/correlacion.png)  
@@ -104,7 +105,7 @@ sns.histplot(data['Edad'], color = 'lightblue', stat = 'density', linewidth = 0.
 sns.kdeplot(data['Edad'], color = 'blue', linewidth = 2, shade = True)  
 plt.ylabel('Frecuencia')  
 plt.savefig('edades.png')  
-#plt.show() # Descomentar para mostrar la figura en una ventana  
+plt.show()
 ```
 
 ![Distribución de edades](articulo/edades.png)
@@ -204,14 +205,14 @@ pdflatex main.tex
 La intención de automatizar la compilación del documento, es que la versión final del artículo se encuentre siempre sincronizada con los resultados obtenidos a partir del procesamiento de los datos crudos originales. Para esto se puede contar con un script bash que contenga las instrucciones que son necesarias ejecutar en caso de actualizar el archivo ```insurance.csv``` con los datos. Por cuestiones de compatibilidad en el manejo de librerías de Python, en este ejemplo se utiliza un entorno virtual, cuyas ventajas de uso se detallan en la siguiente sección. 
 
 ```bash
-cd datos # Moverse al directorio "datos"  
-source venv/bin/activate # Activar entorno virtual  
-python3 analisis.py  # Correr script Python  
-deactivate # Desactivar entorno virtual  
+cd datos                   # Moverse al directorio "datos"  
+source venv/bin/activate   # Activar entorno virtual  
+python3 analisis.py        # Correr script Python  
+deactivate                 # Desactivar entorno virtual  
 cp *.png *.tex ../articulo # Copiar figuras y tablas generadas  
-cd ../articulo # Moverse al directorio del artículo LaTeX  
-pdflatex main.tex # Compilar documento pdf  
-cp main.pdf ../main.pdf # Copiar al directorio principal  
+cd ../articulo             # Moverse al directorio del artículo LaTeX  
+pdflatex main.tex          # Compilar documento pdf  
+cp main.pdf ../main.pdf    # Copiar al directorio principal  
 ```
 
 Se puede guardar estas instrucciones en un fichero, por ejemplo, con el nombre ```sync.sh``` y otorgarle permisos de ejecución. Para verificar que el documento se actualiza correctamente, se puede hacer la prueba de insertar un par de datos atípicos y comparar el documento resultante. Este paso se puede realizar directamente con las siguientes instrucciones:
@@ -263,7 +264,7 @@ pip3 freeze > requirements.txt # Guardar librerías y versiones en archivo
 
 ... # Trabajar normalmente
 
-deactivate # Desactivar el entorno virtual (o no)
+deactivate # Paso opcional: Desactivar el entorno virtual
 # Registrar cambios
 git add . # Agregar todos los ficheros
 git commit -m "Primer commit"
