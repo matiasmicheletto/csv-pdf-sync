@@ -4,7 +4,7 @@ Ajustar las figuras y transcribir los datos procesados a las tablas de un inform
 
 # *"Nunca gastes 6 minutos en hacer algo a mano cuando puedes perder 6 horas tratando de automatizarlo."*  - [Zhang Zhuowei](https://twitter.com/zhuowei/status/1254266079532154880)
 
-En este artículo-tutorial propongo un flujo de trabajo en el que, partiendo de un archivo con datos crudos en formato ".csv", se logra la actualización del documento final, en formato ".pdf", de forma automática, ya sea por cambios realizados en los propios datos iniciales o en las técnicas de procesamiento aplicadas a los mismos. Este es un ejemplo ilustrativo con la idea de presentar **una** forma de lograrlo, pero vale mencionar que existe una infinidad de herramientas diferentes con el mismo propósito. Para quienes no sepan cómo empezar, alguno de los siguientes lineamientos pueden resultar tanto de utilidad como de inspiración para reformular tradicionales metodologías de trabajo que son comúnmente empleadas en este ámbito.
+En este artículo-tutorial propongo un flujo de trabajo en el que, partiendo de un archivo con datos crudos en formato ".csv", se logra la actualización del documento final, en formato ".pdf", de forma automática, ya sea por cambios realizados en los propios datos iniciales o en las técnicas de procesamiento aplicadas a los mismos. Este es un ejemplo ilustrativo con la idea de presentar **una** forma de lograrlo, pero vale mencionar que existe una infinidad de herramientas diferentes con el mismo propósito. Para quienes no sepan cómo empezar, alguno de los siguientes lineamientos pueden resultar tanto de utilidad como de inspiración para reformular las tradicionales metodologías de trabajo que son comúnmente empleadas en este ámbito.
 
 
 
@@ -14,9 +14,9 @@ Si bien en otro [artículo anterior](https://www.linkedin.com/pulse/programaci%2
 
 Este ejemplo está implementado con software libre y gratuito, por lo que no debería haber limitaciones para replicar el procedimiento en el corto y mediano plazo. Se puede consultar todo el código utilizado durante este tutorial en [este repositorio](https://github.com/matiasmicheletto/csv-pdf-sync) público.
 
-Una buena herramienta colaborativa para redactar contenido técnico extenso es [Overleaf](https://www.overleaf.com/), sin embargo, el documento generado en este ejemplo se compilará con el programa pdflatex que viene en el paquete [texlive-full](https://www.tug.org/texlive/). Opcionalmente, se puede usar [Git](https://git-scm.com/) para tener un seguimiento de los cambios en el directorio del proyecto, entre otras ventajas que se detallan más adelante como un [apéndice](#ap%C3%A9ndice-organizaci%C3%B3n-del-directorio-de-trabajo) de este mismo tutorial. 
+Una buena herramienta colaborativa para redactar contenido técnico extenso es [Overleaf](https://www.overleaf.com/), sin embargo, el documento generado en este ejemplo se compilará con el programa *pdflatex* que viene en el paquete [texlive-full](https://www.tug.org/texlive/). Opcionalmente, se puede usar [Git](https://git-scm.com/) para tener un seguimiento de los cambios en el directorio del proyecto, entre otras ventajas que se detallan más adelante como un [apéndice](#ap%C3%A9ndice-organizaci%C3%B3n-del-directorio-de-trabajo) de este mismo tutorial. 
 
-Finalmente, para ilustrar la tarea de ejecutar los distintos programas en orden y copiar o mover archivos resultantes dentro del directorio, se presentan los pasos en forma de instrucciones para línea de comandos, pero que se pueden realizar por medio de scripts para cualquier shell, dependiendo del sistema operativo con el que se trabaje, o incluso con otros programas que cuentan con interfaz gráfica.  
+Finalmente, para ilustrar la tarea de ejecutar los distintos programas en orden y copiar o mover archivos resultantes dentro del directorio, se presentan los pasos en forma de instrucciones para línea de comandos, pero que se pueden realizar por medio de scripts para cualquier *shell*, dependiendo del sistema operativo con el que se trabaje, o incluso con otros programas que cuentan con interfaz gráfica.  
 
 
 
@@ -26,7 +26,7 @@ Con la intención de mostrar un ejemplo sencillo, se trabajará sobre el procesa
 
 ![Encabezado](doc/Encabezado.png)
 
-Para procesar los datos de este ejemplo, se comienza cargando en memoria el contenido del archivo datos, para lo cual se emplea la librería [Pandas](https://pandas.pydata.org/).
+Para procesar los datos de este ejemplo, se comienza cargando en memoria el contenido del archivo ".csv", para lo cual se empleará la librería [Pandas](https://pandas.pydata.org/).
 
 ```python
 import pandas as pd  
@@ -40,7 +40,7 @@ print(data.head(), end = '\n\n')
 print(data.describe(), end = '\n\n')  
 ```
 
-Como los nombres de las columnas y los datos categóricos están en un idioma diferente al del artículo a redactar, es posible aplicar una traducción al contenido para evitar tener que editar las tablas y figuras posteriormente.
+Como los nombres de las columnas y los datos categóricos están en un idioma diferente al del artículo a redactar, es válido aplicar una traducción al contenido para evitar tener que editar las tablas y figuras posteriormente.
 
 ```python
 # Traducir columnas
@@ -110,7 +110,7 @@ plt.show()
 
 ![Distribución de edades](articulo/edades.png)
 
-Con la intención de analizar la relación entre los valores de BMI y Costos en función de los rangos etarios, sexo y condición de fumador, se ejecuta el siguiente procesamiento, donde se calculan los valores promedio para cada grupo.
+Con la intención de generar un par de cuadros para el artículo, se ejecutará un procesamiento con el fin de tabular los valores promedio de BMI y Costos para cada una de las clases que agrupan los datos según rango etario, sexo y condición de fumador. 
 
 ```python
  # Agrupar por rango etario en intervalos de 5 años
@@ -131,13 +131,13 @@ chargesdata = averages['Costos'].unstack().unstack()
 ### Promedios de costos de seguro médico según edad, sexo y condición de fumador
 ![Promedios Costos](doc/TablaCostos.png)  
 
-Finalmente, queda exportar los datos contenidos en las tablas ```bmidata``` y ```chargesdata``` a formato LaTeX. Una manera directa de lograrlo es mediante la función ```to_latex``` de la librería Pandas. 
+Finalmente, queda exportar los datos contenidos en las tablas generadas, ```bmidata``` y ```chargesdata```, a formato LaTeX. Una manera directa de lograrlo es mediante la función ```to_latex``` de la librería Pandas. 
 
 ```python
 print(bmidata.to_latex(caption="Promedios de BMI por edad, sexo y fumador", label="tab:bmi"))
 ```
 
-En la [documentación](https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.to_latex.html) se detalla cómo utilizar este método de manera efectiva y lograr los resultados deseados. Sin embargo, es posible ahorrarse algunas horas de lectura mediante la implementación de un método propio que se encargue de generar un archivo de texto con el formato de tabla necesario.
+En la [documentación](https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.to_latex.html) se detalla cómo utilizar este método de manera efectiva y lograr los resultados deseados. Sin embargo, es posible ahorrarse algunos minutos de lectura mediante la implementación de un breve método que se encargue de generar un archivo de texto con el formato de tabla necesario.
 
 ```python
 def to_latex(df, caption, label, filename):
@@ -173,9 +173,9 @@ to_latex(chargesdata, "Promedios de costos por edad, sexo y fumador", "tab:costo
 
 ## Redacción del documento LaTeX
 
-El procedimiento para la redacción del documento LaTeX no se ve afectado para lograr la sincronización del archivo generado en formato ".pdf" con los resultados del análisis realizado en Python. En este ejemplo, se emplea una simple plantilla de artículo que se encuentra disponible en [este sitio](https://es.overleaf.com/latex/templates/a-simple-article-template/gdsdkccmjnxg).
+El procedimiento para la redacción del documento LaTeX no se ve afectado para lograr la sincronización del archivo generado en formato ".pdf" con los resultados del análisis realizado en Python. En este ejemplo, se parte de la plantilla para artículos que se encuentra disponible en [este sitio](https://es.overleaf.com/latex/templates/a-simple-article-template/gdsdkccmjnxg).
 
-El contenido del artículo se genera con el paquete [lipsum](https://www.ctan.org/pkg/lipsum) para crear texto de relleno ([Lorem Ipsum](https://www.lipsum.com/)). Las figuras y los gráficos se insertan como referencias a los archivos que contienen las imágenes.
+El contenido del artículo se genera con el paquete [lipsum](https://www.ctan.org/pkg/lipsum) para crear texto de relleno ([Lorem Ipsum](https://www.lipsum.com/)). Las figuras y los gráficos se insertan como referencias a los archivos que contienen las imágenes correspondientes.
 
 ```latex
 \begin{figure}[ht]  
@@ -186,43 +186,56 @@ El contenido del artículo se genera con el paquete [lipsum](https://www.ctan.or
 \end{figure}  
 ```
 
-En el caso de las tablas, se importan directamente los archivos ".tex" generados desde el script de Python.
+En el caso de las tablas, se importan directamente los archivos ".tex" generados desde el *script* de Python.
 
 ```latex
 \input{bmi.tex}  
 ```
 
-Suponiendo que el artículo está redactado en el archivo ```main.tex```, es posible generar la salida en formato ".pdf" empleando el software *pdflatex*, mencionado anteriormente.
+Suponiendo que el artículo está redactado en un fichero con nombre ```main.tex```, es posible generar la salida en formato ".pdf" empleando el software *pdflatex*, mencionado anteriormente.
 
 ```bash
 pdflatex main.tex  
 ```
 
+Si todo resulta bien, se obtendrá el artículo final con el nombre "main.pdf". Resta reunir todo el procedimiento en un *script bash* para ejecutar 
 
 
 ## Automatización de todo el proceso
 
-La intención de automatizar la compilación del documento, es que la versión final del artículo se encuentre siempre sincronizada con los resultados obtenidos a partir del procesamiento de los datos crudos originales. Para esto se puede contar con un script bash que contenga las instrucciones que son necesarias ejecutar en caso de actualizar el archivo ```insurance.csv``` con los datos. Por cuestiones de compatibilidad en el manejo de librerías de Python, en este ejemplo se utiliza un entorno virtual, cuyas ventajas de uso se detallan en la siguiente sección. 
+La intención de automatizar la compilación del documento, es que la versión final del artículo se encuentre siempre sincronizada con los resultados obtenidos a partir del procesamiento de los datos crudos originales. Para esto se puede contar con un *script bash* que contenga las instrucciones que son necesarias ejecutar en caso de actualizar el archivo ```insurance.csv``` con los datos, o bien al realizar cambios en los métodos de procesamiento de los mismos. Por cuestiones de compatibilidad en el manejo de librerías de Python, en este ejemplo se utiliza un entorno virtual, cuyas ventajas de uso se detallan en la siguiente sección. 
 
 ```bash
-cd datos                   # Moverse al directorio "datos"  
-source venv/bin/activate   # Activar entorno virtual  
-python3 analisis.py        # Correr script Python  
-deactivate                 # Desactivar entorno virtual  
-cp *.png *.tex ../articulo # Copiar figuras y tablas generadas  
-cd ../articulo             # Moverse al directorio del artículo LaTeX  
-pdflatex main.tex          # Compilar documento pdf  
-cp main.pdf ../main.pdf    # Copiar al directorio principal  
+cd datos                    # Moverse al directorio "datos"  
+source venv/bin/activate    # Activar entorno virtual  
+python3 analisis.py         # Correr script Python  
+deactivate                  # Desactivar entorno virtual  
+cp *.png *.tex ../articulo  # Copiar figuras y tablas generadas  
+cd ../articulo              # Moverse al directorio del artículo LaTeX  
+pdflatex main.tex           # Compilar documento pdf  
+cp main.pdf ../articulo.pdf # Copiar al directorio principal  
 ```
 
-Se puede guardar estas instrucciones en un fichero, por ejemplo, con el nombre ```sync.sh``` y otorgarle permisos de ejecución. Para verificar que el documento se actualiza correctamente, se puede hacer la prueba de insertar un par de datos atípicos y comparar el documento resultante. Este paso se puede realizar directamente con las siguientes instrucciones:
+Para evitar tener que correr estos comandos cada vez que se modifiquen los datos de entrada, se puede guardar estas instrucciones en un fichero, por ejemplo, con el nombre ```sync.sh``` y otorgarle permisos de ejecución. Por último, se puede emplear un escuchador/observador de cambios para disparar la ejecución de todo el procedimiento ante modificaciones en el *script* de Python o en los datos originales. En este ejemplo se usa [entr](https://github.com/eradman/entr), aunque cualquier otro [programa similar](https://anarc.at/blog/2019-11-20-file-monitoring-tools/) puede cumplir con la misma función. 
+
+```bash
+while sleep 1 ; do 
+    find ./datos -name 'insurance.csv' -o -name 'analisis.py' | entr ./sync.sh 
+done
+```
+
+Estas instrucciones se deben ejecutar antes de comenzar a trabajar, por lo que también se puede salvar como un *script* con el nombre ```daemon.sh``` y dejarlo corriendo en segundo plano, por ejemplo, con ```nohup```, ```setsid``` o ```disown```. 
+
+```bash
+nohup ./daemon.sh >/dev/null 2>&1 &
+```
+
+Para verificar que el documento se actualiza correctamente, se puede hacer la prueba de insertar un par de datos atípicos y comparar el documento resultante. Este paso se puede realizar directamente con las siguientes instrucciones:
 
 ```bash
 # Incorporar dos nuevas observaciones al archivo de datos
 echo '64,female,99.99,20,no,northwest,99999' >> datos/insurance.csv  
 echo '64,male,99.99,20,no,northwest,99999' >> datos/insurance.csv  
-# Actualizar documento final 
-./sync.sh  
 ```
 
 Se puede comprobar que cambian los valores en la figura que contiene la matriz de correlación y lo mismo ocurre con las tablas, donde los datos correspondientes al último rango etario de no fumadores, difieren luego de la modificación de los datos originales.  
@@ -236,8 +249,6 @@ Finalmente y en caso de no haber aplicado control de versiones al proyecto, se p
 head -n -2 datos/insurance.csv > datos/temp.csv  
 # Reemplazar el archivo temporal por el original  
 mv datos/temp.csv datos/insurance.csv  
-# Actualizar documento final 
-./sync.sh  
 ```
 
 ## Apéndice: Organización del directorio de trabajo
