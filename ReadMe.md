@@ -10,7 +10,7 @@ En este artículo-tutorial propongo un flujo de trabajo en el que, partiendo de 
 
 ## Herramientas
 
-Si bien en otro [artículo anterior](https://www.linkedin.com/pulse/programaci%25C3%25B3n-web-aplicada-computaci%25C3%25B3n-cient%25C3%25ADfica-es-mat%25C3%25ADas-micheletto/) sugerí el uso del navegador web para tareas relacionadas a la actividad académica, en este caso se requerirá cierto uso del almacenamiento local del sistema para gestionar varios archivos, por lo que resulta más apropiado emplear scripts para [Python](https://www.python.org/) y [Bash](https://www.gnu.org/savannah-checkouts/gnu/bash/manual/bash.html).  
+Si bien en otro [artículo anterior](https://www.linkedin.com/pulse/programaci%25C3%25B3n-web-aplicada-computaci%25C3%25B3n-cient%25C3%25ADfica-es-mat%25C3%25ADas-micheletto/) sugerí el uso del navegador web para tareas relacionadas con la actividad científica, en este caso se requerirá cierto uso del almacenamiento local del sistema para gestionar múltiples archivos, por lo que resulta más apropiado emplear scripts para [Python](https://www.python.org/) y [Bash](https://www.gnu.org/savannah-checkouts/gnu/bash/manual/bash.html).  
 
 Este ejemplo está implementado con software libre y gratuito, por lo que no debería haber limitaciones para replicar el procedimiento en el corto y mediano plazo. Se puede consultar todo el código utilizado durante este tutorial en [este repositorio](https://github.com/matiasmicheletto/csv-pdf-sync) público.
 
@@ -192,18 +192,18 @@ En el caso de las tablas, se importan directamente los archivos ".tex" generados
 \input{bmi.tex}  
 ```
 
-Suponiendo que el artículo está redactado en un fichero con nombre ```main.tex```, es posible generar la salida en formato ".pdf" empleando el software *pdflatex*, mencionado anteriormente.
+Suponiendo que el artículo está redactado en un fichero con nombre ```main.tex```, es posible generar la salida en formato ".pdf" empleando el software *pdflatex*, mencionado anteriormente. Si todo resulta bien, se obtendrá el artículo final con el nombre "main.pdf". 
 
 ```bash
 pdflatex main.tex  
 ```
 
-Si todo resulta bien, se obtendrá el artículo final con el nombre "main.pdf". Resta reunir todo el procedimiento en un *script bash* para ejecutar 
+![Captura del artículo](/doc/CapturaArticulo.png) 
 
 
 ## Automatización de todo el proceso
 
-La intención de automatizar la compilación del documento, es que la versión final del artículo se encuentre siempre sincronizada con los resultados obtenidos a partir del procesamiento de los datos crudos originales. Para esto se puede contar con un *script bash* que contenga las instrucciones que son necesarias ejecutar en caso de actualizar el archivo ```insurance.csv``` con los datos, o bien al realizar cambios en los métodos de procesamiento de los mismos. Por cuestiones de compatibilidad en el manejo de librerías de Python, en este ejemplo se utiliza un entorno virtual, cuyas ventajas de uso se detallan en la siguiente sección. 
+La intención de automatizar la compilación del documento, es que la versión final del artículo se encuentre siempre sincronizada con los resultados obtenidos a partir del procesamiento de los datos crudos originales. Para esto se puede contar con un *script bash* que contenga las instrucciones que son necesarias ejecutar en caso de actualizar el archivo ```insurance.csv``` con los datos, o bien al realizar cambios en los métodos de procesamiento de los mismos. Por cuestiones de compatibilidad en el manejo de librerías de Python, en este ejemplo se utiliza un entorno virtual (las ventajas de uso se detallan en la [siguiente sección](#ap%C3%A9ndice-organizaci%C3%B3n-del-directorio-de-trabajo)). 
 
 ```bash
 cd datos                    # Moverse al directorio "datos"  
@@ -253,7 +253,7 @@ mv datos/temp.csv datos/insurance.csv
 
 ## Apéndice: Organización del directorio de trabajo
 
-Mantener el directorio de trabajo organizado permite que el proyecto escale sin afectar a la productividad y es un requisito fundamental para coordinar tareas en todo equipo de trabajo. Quienes acostumbran a versionar los documentos nombrando los ficheros de diferentes formas, como por ejemplo: "InformeFinal.pdf", "InformeFinal2.pdf", "InformeFinalFinal.pdf", "InformeEsteEsElQueVa.pdf", tal vez encuentren muy útil comenzar a manejar herramientas como [Git](https://git-scm.com/), [Mercurial](https://www.mercurial-scm.org/) o [Bazaar](http://wiki.bazaar.canonical.com/) que permiten registrar el histórico de cambios, incorporar modificaciones de los demás colaboradores y también moverse con facilidad entre las distintas versiones del proyecto. 
+Mantener el directorio de trabajo organizado permite que el proyecto escale sin afectar a la productividad y es un requisito fundamental para coordinar tareas en todo equipo de trabajo. Quienes acostumbran a versionar los documentos nombrando los ficheros de diferentes formas, como por ejemplo: "InformeFinal.pdf", "InformeFinal2.pdf", "InformeFinalFinal.pdf", "InformeEsteEsElQueVa.pdf", tal vez encuentren muy útil comenzar a manejar herramientas como [Git](https://git-scm.com/), [Mercurial](https://www.mercurial-scm.org/) o [Bazaar](http://wiki.bazaar.canonical.com/) que permiten no sólo registrar el historial de cambios, sino también incorporar modificaciones de los demás colaboradores y también moverse con facilidad entre las distintas versiones del proyecto. 
 
 ![Un mal ejemplo](doc/Versionado.png)
 
